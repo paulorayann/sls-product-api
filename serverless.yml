@@ -78,6 +78,14 @@ functions:
       - httpApi:
           path: /api/v1/product
           method: post
+
+  getProduct:
+    handler: src/handlers.getProduct
+    events:
+      - httpApi:
+          path: /api/v1/product
+          method: get
+
   getProductByID:
     handler: src/handlers.getProductByID
     events:

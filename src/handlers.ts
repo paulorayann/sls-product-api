@@ -42,3 +42,15 @@ export const getProductByID = async (event: APIGatewayProxyEvent): Promise<APIGa
     body: JSON.stringify(output.Item),
   }
 }
+
+export const getProduct = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+
+  const output = await docClient.scan({
+    TableName: 'Products',
+  }).promise()
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify(output.Items),
+  }
+}
