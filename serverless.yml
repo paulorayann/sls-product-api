@@ -78,6 +78,12 @@ functions:
       - httpApi:
           path: /api/v1/product/create
           method: post
+  getProductByID:
+    handler: src/handlers.getProductByID
+    events:
+      - httpApi:
+          path: /api/v1/product/get/{id}
+          method: get
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
