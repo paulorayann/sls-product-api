@@ -3,6 +3,9 @@ import AWS from 'aws-sdk'
 import { v4 } from "uuid";
 
 const docClient = new AWS.DynamoDB.DocumentClient()
+const headers = {
+  'content-type': 'application/json',
+}
 
 export const createProduct = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   const reqBody = JSON.parse(event.body as string)
@@ -16,6 +19,7 @@ export const createProduct = async (event: APIGatewayProxyEvent): Promise<APIGat
   }).promise()
   return {
     statusCode: 201,
+    headers,
     body: JSON.stringify(productBody),
   };
 };
@@ -34,11 +38,13 @@ export const getProductByID = async (event: APIGatewayProxyEvent): Promise<APIGa
   if (!output.Item) {
     return {
       statusCode: 404,
+      headers,
       body: JSON.stringify({ error: 'Product not found' }),
     };
   }
   return {
     statusCode: 200,
+    headers,
     body: JSON.stringify(output.Item),
   }
 }
@@ -51,6 +57,7 @@ export const getProduct = async (event: APIGatewayProxyEvent): Promise<APIGatewa
 
   return {
     statusCode: 200,
+    headers,
     body: JSON.stringify(output.Items),
   }
 }
