@@ -41,7 +41,18 @@ functions:
           method: get
 
 plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
   - serverless-plugin-typescript
+
+custom:
+  dynamodb:
+    stages:
+      - dev
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
 
 resources:
   Resources:
