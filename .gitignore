@@ -1,5 +1,7 @@
 node_modules
 /dist
 .serverless
+.build
+.dynamodb
 .vscode
 .env
