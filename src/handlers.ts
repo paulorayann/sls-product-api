@@ -3,7 +3,16 @@ import AWS from 'aws-sdk'
 import { v4 } from "uuid";
 import * as yup from 'yup'
 
-const docClient = new AWS.DynamoDB.DocumentClient()
+
+const options = {
+  region : process.env.REGION,
+  endpoint : process.env.ENDPOINT,
+  accessKeyId : process.env.ACCESS_KEY_ID,
+  secretAccessKey : process.env.SECRET_ACCESS_KEY
+}
+
+
+const docClient = new AWS.DynamoDB.DocumentClient(options)
 const headers = {
   'content-type': 'application/json',
 }
